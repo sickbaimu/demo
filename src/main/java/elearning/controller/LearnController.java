@@ -55,7 +55,7 @@ public class LearnController {
      * 获得文本内容
      * @param chapter_id 章id
      * @param section_order 节id
-     * @return
+     * @return 文本内容
      */
     @ResponseBody
     @RequestMapping("/GetTextContent")
