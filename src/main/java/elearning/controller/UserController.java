@@ -46,7 +46,6 @@ public class UserController {
     @ResponseBody
     @RequestMapping("/GetHomeInfo")
     public HomeInfo GetHomeInfo(){
-        System.out.println(new HomeInfo(getTextListDemo(),getPhotoListDemo(),getMediaListDemo(), PackedMBBS(BBSSQL.getMainBBS(0))).toString());
         return new HomeInfo(getTextListDemo(),getPhotoListDemo(),getMediaListDemo(), PackedMBBS(BBSSQL.getMainBBS(0)));
     }
 
