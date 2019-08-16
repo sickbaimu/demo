@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.ArrayList;
 
 import static elearning.sql.BBSSQL.PackedMBBS;
+import static elearning.sql.BaseSQL.ListToString;
 import static elearning.sql.LearnSQL.getNameList;
 
 
@@ -45,6 +46,7 @@ public class UserController {
     @ResponseBody
     @RequestMapping("/GetHomeInfo")
     public HomeInfo GetHomeInfo(){
+        System.out.println(new HomeInfo(getTextListDemo(),getPhotoListDemo(),getMediaListDemo(), PackedMBBS(BBSSQL.getMainBBS(0))).toString());
         return new HomeInfo(getTextListDemo(),getPhotoListDemo(),getMediaListDemo(), PackedMBBS(BBSSQL.getMainBBS(0)));
     }
 
@@ -62,18 +64,7 @@ public class UserController {
     }
 
 
-    /**
-     * 将列表转化为字符串
-     * @param arrayList 待转换列表
-     * @return 字符串
-     */
-    private String ListToString(ArrayList<String> arrayList){
-        StringBuilder builder = new StringBuilder();
-        for(String names:arrayList){
-            builder.append(names.concat("-"));
-        }
-        return builder.toString().substring(0,builder.toString().length()-1);
-    }
+
     /**
      * 获取视频目录
      * @return 视频目录

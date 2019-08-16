@@ -15,27 +15,7 @@ import java.util.ArrayList;
  */
 public class LearnSQL extends BaseSQL{
 
-    /**
-     * 按顺序获取某个表的命名字段
-     * @param tableName 表名
-     * @param column 列名
-     * @return 命名字段的集合
-     */
-    public static ArrayList<String> getNameList(String tableName,String column){
-        ArrayList<String> arrayList = new ArrayList<>();
-        try{
-            init();
-            rs = stmt.executeQuery("select *from "+tableName+" order by _order");
-            while(rs.next())
-            {
-                arrayList.add(rs.getString(column));
-            }
-            closeQuery();
-        }catch(SQLException |ClassNotFoundException e){
-            e.printStackTrace();
-        }
-        return arrayList;
-    }
+
 
     /**
      * 获得id为chapter_id章、顺序为section_order的节
