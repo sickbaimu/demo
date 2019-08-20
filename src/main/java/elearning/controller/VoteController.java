@@ -1,21 +1,29 @@
 package elearning.controller;
 
 import elearning.entity.RankRecord;
+import elearning.entity.WorkCommit;
+import elearning.sql.BBSSQL;
 import elearning.sql.UserSQL;
 import elearning.sql.VoteSQL;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 
+import static elearning.patch.UpLoadPicture.GenerateImage;
 import static elearning.sql.BaseSQL.ListToString;
 import static elearning.sql.LearnSQL.getNameList;
 
 @Controller
 public class VoteController {
+    private SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");//设置日期格式
+
     @ResponseBody
     @RequestMapping("/GetWorkNames")
     public String GetWorkNames(){
@@ -63,5 +71,38 @@ public class VoteController {
             return "0";
         else
             return "-2";
+    }
+
+    @ResponseBody
+    @RequestMapping("/VoteCommit")
+    public String VoteCommit(String workID,String userID,String commit){
+        return BBSSQL.addCommit(workID,userID,commit);
+    }
+
+    @ResponseBody
+    @RequestMapping("/GetCommit")
+    public ArrayList<WorkCommit> GetCommit(String workID){
+        ArrayList<WorkCommit> workCommits = BBSSQL.getCommit(workID);
+        for(WorkCommit workCommit:workCommits){
+            workCommit.setUserName(UserSQL.getUserNameByID(workCommit.getUserName()));
+        }
+        return workCommits;
+    }
+
+    @ResponseBody
+    @RequestMapping("/UpLoadWork")
+    public String UpLoadWork(String base64,String userID,String name) {
+        System.out.println(userID);
+        System.out.println(name);
+        String folder_path = "src\\main\\resources\\static\\work\\";
+        File folder = new File(folder_path);
+        if (!folder.exists()) {
+            folder.mkdir();
+        }
+        boolean result  = GenerateImage(base64,folder_path+name+".jpg");
+        if(result){
+            return VoteSQL.addWork(name,userID);
+        }
+        return "-1";
     }
 }

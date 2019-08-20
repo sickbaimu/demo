@@ -76,12 +76,25 @@ public class VoteSQL extends BaseSQL {
             while(rs.next())
             {
                 cnt++;
-
             }
             closeQuery();
         }catch(SQLException |ClassNotFoundException e){
             e.printStackTrace();
         }
         return String.valueOf(cnt);
+    }
+
+    public static String addWork(String name, String userID) {
+        try{
+            Class.forName(jdbc);
+            init();
+            String sql = "insert into work(name,user_id)VALUES('"+name+"','"+userID+"');";
+            stmt.executeUpdate(sql);
+            closeUpdate();
+        }catch(SQLException |ClassNotFoundException e){
+            e.printStackTrace();
+            return "-1";
+        }
+        return "0";
     }
 }

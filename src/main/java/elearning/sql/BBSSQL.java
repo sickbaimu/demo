@@ -4,6 +4,7 @@ package elearning.sql;
 
 import elearning.entity.CBBS;
 import elearning.entity.MBBS;
+import elearning.entity.WorkCommit;
 
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -151,5 +152,34 @@ public class BBSSQL extends BaseSQL{
             return "-1";
         }
         return id;
+    }
+
+    public static String addCommit(String workID, String userID, String commit) {
+        try{
+            init();
+            String sql = "insert into workcommit(workID,userID,commit)VALUES('"+workID+"','"+userID+"','"+commit+"');";
+            stmt.executeUpdate(sql);
+            closeUpdate();
+        }catch(SQLException |ClassNotFoundException e){
+            e.printStackTrace();
+            return "-1";
+        }
+        return "0";
+    }
+
+    public static ArrayList<WorkCommit> getCommit(String workID) {
+        ArrayList<WorkCommit> workCommits = new ArrayList<>();
+        try{
+            init();
+            rs = stmt.executeQuery("select *from workcommit where workID = "+ workID);
+            while(rs.next())
+            {
+                workCommits.add(new WorkCommit(rs.getString("userID"),rs.getString("commit")));
+            }
+            closeQuery();
+        }catch(SQLException |ClassNotFoundException e){
+            e.printStackTrace();
+        }
+        return workCommits;
     }
 }
