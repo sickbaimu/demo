@@ -2,6 +2,7 @@ package elearning.controller;
 
 
 import elearning.entity.Question;
+import elearning.sql.ExamSQL;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -21,13 +22,34 @@ public class ExamController {
     @ResponseBody
     @RequestMapping("/GetExam")
     public ArrayList<Question> getExam(String Type){
-        ArrayList<Question> questions = new ArrayList<>();
-        questions.add(new Question("1",1,"Radio","1+1=?@1@2@3@4","B"));
-        questions.add(new Question("2",2,"Radio","1+2=?@1@2@3@4","C"));
-        questions.add(new Question("3",3,"Check","偶数?@1@2@3@4","BD"));
-        questions.add(new Question("4",4,"Fill","1+_=2?","1"));
+        ArrayList<Question> questions = ExamSQL.GetQuestions();
         if(Type.equals("Random"))
             Collections.shuffle(questions);
         return questions;
+    }
+
+    @ResponseBody
+    @RequestMapping("/CollectQuestion")
+    public String CollectQuestion(String userID,String questionID){
+        return ExamSQL.AddCollection(userID,questionID);
+    }
+
+    @ResponseBody
+    @RequestMapping("/GetQuestionCollection")
+    public ArrayList<Question> GetQuestionCollection(String userID){
+        ArrayList<String> questionID = ExamSQL.GetCollection(userID);
+        ArrayList<Question> allQuestions = ExamSQL.GetQuestions();
+        ArrayList<Question> collectionQuestions = new ArrayList<>();
+        for(Question question:allQuestions){
+            if(questionID.contains(question.getId()))
+                collectionQuestions.add(question);
+        }
+        return collectionQuestions;
+    }
+
+    @ResponseBody
+    @RequestMapping("/AddScore")
+    public String AddScore(String userID,String score,String time,String rate,String errorNum,String day){
+        return ExamSQL.AddScore(userID,score,time,rate,errorNum,day);
     }
 }
