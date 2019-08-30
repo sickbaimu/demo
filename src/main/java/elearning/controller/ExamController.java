@@ -52,4 +52,10 @@ public class ExamController {
     public String AddScore(String userID,String score,String time,String rate,String errorNum,String day){
         return ExamSQL.AddScore(userID,score,time,rate,errorNum,day);
     }
+
+    @ResponseBody
+    @RequestMapping("GetMyScore")
+    public String GetMyScore(String userID){
+        return ExamSQL.GetMyScore(userID);
+    }
 }

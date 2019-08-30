@@ -67,4 +67,25 @@ public class ExamSQL extends BaseSQL {
         }
         return "0";
     }
+
+    public static String GetMyScore(String userID) {
+        System.out.println(userID);
+        String score = "";
+        try {
+            init();
+            rs = stmt.executeQuery("select *from score where user_id = "+userID);
+            while (rs.next()){
+                score = rs.getString("score")+"@"+
+                        rs.getString("time")+"@"+
+                        rs.getString("rate")+"@"+
+                        rs.getString("errorNum")+"@"+
+                        rs.getString("day");
+            }
+            System.out.println(score);
+            closeQuery();
+        }catch(SQLException |ClassNotFoundException e){
+            e.printStackTrace();
+        }
+        return score;
+    }
 }
