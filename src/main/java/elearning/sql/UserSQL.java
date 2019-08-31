@@ -2,6 +2,7 @@ package elearning.sql;
 
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  * @author lele
@@ -76,5 +77,21 @@ public class UserSQL extends BaseSQL{
             e.printStackTrace();
         }
         return username;
+    }
+
+    public static ArrayList<String> getAllUser(){
+        ArrayList<String> users = new ArrayList<>();
+        try{
+            init();
+            rs = stmt.executeQuery("select *from user");
+            while(rs.next())
+            {
+                users.add(rs.getString("id"));
+            }
+            closeQuery();
+        }catch(SQLException |ClassNotFoundException e){
+            e.printStackTrace();
+        }
+        return users;
     }
 }

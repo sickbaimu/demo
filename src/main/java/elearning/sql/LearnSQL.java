@@ -114,4 +114,20 @@ public class LearnSQL extends BaseSQL{
         }
         return textChapters;
     }
+
+    public static String GetMediaPath(String name) {
+        String path = "-1";
+        try{
+            init();
+            rs = stmt.executeQuery("select *from media");
+            while(rs.next()) {
+                if(rs.getString("name").equals(name))
+                path=rs.getString("path");
+            }
+            closeQuery();
+        }catch(SQLException |ClassNotFoundException e){
+            e.printStackTrace();
+        }
+        return path;
+    }
 }

@@ -3,6 +3,7 @@ package elearning.controller;
 
 import elearning.entity.HomeInfo;
 import elearning.sql.BBSSQL;
+import elearning.sql.PointSQL;
 import elearning.sql.UserSQL;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,7 +35,10 @@ public class UserController {
     public String Login(String username,String pwd){
         if(username.equals("admin")&&pwd.equals("admin"))
             return "-2";
-        return UserSQL.LoginCheck(username,pwd);
+        String userID = UserSQL.LoginCheck(username,pwd);
+        if(!userID.equals("-1"))
+            PointController.AddPoint(userID, 1, "Login");
+        return userID;
     }
 
     @ResponseBody

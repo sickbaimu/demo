@@ -31,6 +31,7 @@ public class ExamController {
     @ResponseBody
     @RequestMapping("/CollectQuestion")
     public String CollectQuestion(String userID,String questionID){
+        PointController.AddPoint(userID,1,"Collection");
         return ExamSQL.AddCollection(userID,questionID);
     }
 
@@ -49,7 +50,21 @@ public class ExamController {
 
     @ResponseBody
     @RequestMapping("/AddScore")
-    public String AddScore(String userID,String score,String time,String rate,String errorNum,String day){
+    public String AddScore(String userID,String score,String time,String rate,String errorNum,String day,String model){
+        for(int i = 0; i<Integer.parseInt(time)/60; i++)
+            PointController.AddPoint(userID,1,"AnswerTime");
+        int point = Integer.parseInt(score);
+        if(point==100)
+            PointController.AddPoint(userID,6,"Answer");
+        else if(point>=80){
+            PointController.AddPoint(userID,4,"Answer");
+        }else if(point>=60){
+            PointController.AddPoint(userID,2,"Answer");
+        }else if(point>=0){
+            PointController.AddPoint(userID,1,"Answer");
+        }
+        if(!model.equals("Final"))
+            return "0";
         return ExamSQL.AddScore(userID,score,time,rate,errorNum,day);
     }
 

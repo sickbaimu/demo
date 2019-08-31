@@ -78,8 +78,15 @@ public class LearnController {
      */
     @ResponseBody
     @RequestMapping("/GetPhotoDescription")
-    public String GetPhotoDescription(String photoName){
+    public String GetPhotoDescription(String photoName,String userID){
+        PointController.AddPoint(userID,1,"TP");
         return ReadFile("src/main/resources/static/photo/"+photoName+".txt");
+    }
+
+    @ResponseBody
+    @RequestMapping("/GetMediaPath")
+    public String GetMediaPath(String name){
+        return LearnSQL.GetMediaPath(name);
     }
     /**
      * 测试网络连接

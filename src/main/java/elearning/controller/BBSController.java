@@ -58,6 +58,7 @@ public class BBSController {
         BBSSQL.addMainBBS(theme,user,time);
         String id = BBSSQL.getMainBBSID(theme,user,time);
         BBSSQL.addChildBBS(id,user,content,time);
+        PointController.AddPoint(user,1,"BBS");
         return "0";
     }
 
@@ -65,6 +66,7 @@ public class BBSController {
     @RequestMapping("/RePost")
     public String RePost(String mainID,String user,String content){
         SimpleDateFormat df2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        PointController.AddPoint(user,1,"BBS");
         return BBSSQL.addChildBBS(mainID,user,content,df2.format(new Date()));
     }
 

@@ -37,7 +37,7 @@ public class VoteController {
     }
 
     @ResponseBody
-    @RequestMapping("/GetRank")
+    @RequestMapping("/GetVoteRank")
     public ArrayList<RankRecord> GetRank(){
         //获得作品的集合
         ArrayList<RankRecord> rankRecords = VoteSQL.GetRank();
