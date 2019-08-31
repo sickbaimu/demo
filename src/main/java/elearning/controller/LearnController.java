@@ -17,8 +17,6 @@ import static elearning.sql.LearnSQL.*;
 @Controller
 public class LearnController {
 
-
-
     /**
      * 获取文本目录
      * @return 文本目录
