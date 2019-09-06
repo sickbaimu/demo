@@ -13,13 +13,14 @@ public class HomeInfo {
     private String photoList;
     private String mediaList;
     private ArrayList<MBBS> bbsList;
+    private String rate;
 
-    public HomeInfo(String textList, String photoList, String mediaList, ArrayList<MBBS> bbsList) {
+    public HomeInfo(String textList, String photoList, String mediaList, ArrayList<MBBS> bbsList, String rate) {
         this.textList = textList;
         this.photoList = photoList;
         this.mediaList = mediaList;
         this.bbsList = bbsList;
-
+        this.rate = rate;
     }
 
     public String getTextList() {
@@ -52,5 +53,13 @@ public class HomeInfo {
 
     public void setBbsList(ArrayList<MBBS> bbsList) {
         this.bbsList = bbsList;
+    }
+
+    public String getRate() {
+        return rate;
+    }
+
+    public void setRate(String rate) {
+        this.rate = rate;
     }
 }

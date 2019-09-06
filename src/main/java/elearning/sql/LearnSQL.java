@@ -1,6 +1,7 @@
 package elearning.sql;
 
 
+import elearning.entity.MyMedia;
 import elearning.entity.TextChapter;
 import elearning.entity.TextSection;
 
@@ -129,5 +130,119 @@ public class LearnSQL extends BaseSQL{
             e.printStackTrace();
         }
         return path;
+    }
+
+    public static boolean CheckRecord(String userID,String type,String flag) {
+        if(userID==null||userID.equals("999999"))
+            return false;
+        boolean isExist = false;
+        try{
+            init();
+            rs = stmt.executeQuery("select *from record where user_id =  "+userID+" and _type = '"+type+"' and flag = '"+flag+"'");
+            while(rs.next()) {
+                isExist = true;
+            }
+            closeQuery();
+        }catch(SQLException |ClassNotFoundException e){
+            e.printStackTrace();
+        }
+        return isExist;
+    }
+    public static void AddRecord(String userID,String type,String flag){
+        if(userID==null||userID.equals("999999"))
+            return;
+        try{
+            Class.forName(jdbc);
+            init();
+            String sql = "insert into record(user_id, _type,flag)VALUES('"+userID+"','"+type+"','"+flag+"');";
+            stmt.executeUpdate(sql);
+            closeUpdate();
+        }catch(SQLException |ClassNotFoundException e){
+            e.printStackTrace();
+        }
+    }
+
+    public static int getRate(String userID,String type) {
+        int cnt = 0;
+        try{
+            init();
+            rs = stmt.executeQuery("select *from record where user_id =  "+userID+" and _type = '"+type+"'");
+            while(rs.next()) {
+                cnt++;
+            }
+            closeQuery();
+        }catch(SQLException |ClassNotFoundException e){
+            e.printStackTrace();
+        }
+        return cnt;
+    }
+
+    public static int getTotal(String type){
+        int cnt = 0;
+        try{
+            init();
+            rs = stmt.executeQuery("select *from "+type);
+            while(rs.next()) {
+                cnt++;
+            }
+            closeQuery();
+        }catch(SQLException |ClassNotFoundException e){
+            e.printStackTrace();
+        }
+        return cnt;
+    }
+
+    public static MyMedia GetMediaByName(String name) {
+        MyMedia myMedia = new MyMedia("","","","");
+        try{
+            init();
+            rs = stmt.executeQuery("select *from media where name = '"+name+"'");
+            while(rs.next()) {
+                myMedia = new MyMedia(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4));
+            }
+            closeQuery();
+        }catch(SQLException |ClassNotFoundException e){
+            e.printStackTrace();
+        }
+        return myMedia;
+    }
+
+    public static String UpdateMedia(String id, String order, String name, String path) {
+        try{
+            init();
+            String sql = "update media set _order = "+order+" ,name ='"+name+"',path = '"+path+"' where id  = "+id;
+            stmt.executeUpdate(sql);
+            closeUpdate();
+        }catch(SQLException |ClassNotFoundException e){
+            e.printStackTrace();
+            return "-1";
+        }
+        return "0";
+    }
+
+    public static String DeleteMedia(String id) {
+        try {
+            init();
+            stmt.executeUpdate("delete from media where id =  "+id);
+            closeQuery();
+        }catch(SQLException |ClassNotFoundException e){
+            e.printStackTrace();
+            return "-1";
+        }
+        return "0";
+    }
+
+    public static String AddMedia(String order, String name, String path) {
+        try{
+            init();
+            String sql = "insert into media (_order,name,path)VALUES('"+order+"','"+name+"','"+path+"');";
+            System.out.println(sql);
+            stmt.executeUpdate(sql);
+            closeUpdate();
+        }catch(SQLException |ClassNotFoundException e){
+            e.printStackTrace();
+            return "-1";
+        }
+        return "0";
     }
 }

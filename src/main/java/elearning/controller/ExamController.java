@@ -2,7 +2,9 @@ package elearning.controller;
 
 
 import elearning.entity.Question;
+import elearning.entity.RankRecord;
 import elearning.sql.ExamSQL;
+import elearning.sql.UserSQL;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -72,5 +74,39 @@ public class ExamController {
     @RequestMapping("GetMyScore")
     public String GetMyScore(String userID){
         return ExamSQL.GetMyScore(userID);
+    }
+
+    @ResponseBody
+    @RequestMapping("GetAllScore")
+    public ArrayList<RankRecord> GetAllScore(){
+        ArrayList<RankRecord> rankRecords = ExamSQL.GetAllScore();
+        for(RankRecord rankRecord:rankRecords)
+            rankRecord.setUserName(UserSQL.getUserNameByID(rankRecord.getUserName()));
+        return rankRecords;
+    }
+    @ResponseBody
+    @RequestMapping("GetAllQuestion")
+    public ArrayList<Question> GetAllQuestion(){
+        return ExamSQL.GetQuestions();
+    }
+    @ResponseBody
+    @RequestMapping("GetQuestion")
+    public Question GetQuestion(String id){
+        return ExamSQL.GetQuestion(id);
+    }
+    @ResponseBody
+    @RequestMapping("UpdateQuestion")
+    public String UpdateQuestion(String id,String order,String type,String question,String answer){
+        return ExamSQL.UpdateQuestion(id,order,type,question,answer);
+    }
+    @ResponseBody
+    @RequestMapping("AddQuestion")
+    public String AddQuestion(String order,String type,String question,String answer){
+        return ExamSQL.AddQuestion(order,type,question,answer);
+    }
+    @ResponseBody
+    @RequestMapping("DeleteQuestion")
+    public String DeleteQuestion(String id){
+        return ExamSQL.DeleteQuestion(id);
     }
 }

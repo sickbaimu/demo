@@ -65,7 +65,7 @@ public class BBSSQL extends BaseSQL{
         ArrayList<MBBS> arrayList = new ArrayList<>();
         try{
             init();
-            rs = stmt.executeQuery("select *from MainBBS order by time");
+            rs = stmt.executeQuery("select *from MainBBS order by time desc");
             while(rs.next())
             {
                 if(page*10<i && i<=(page+1)*10)
@@ -182,4 +182,5 @@ public class BBSSQL extends BaseSQL{
         }
         return workCommits;
     }
+
 }

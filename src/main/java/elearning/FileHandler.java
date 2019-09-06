@@ -40,6 +40,39 @@ public class FileHandler {
         return sb.toString();
     }
 
+    public static void main(String[] args){
+    }
+
+    public static String WriteFile(String filePath,String content) {
+        try {
+            File file = new File(filePath);
+            // if file doesnt exists, then create it
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+
+            FileWriter fw = new FileWriter(file.getAbsoluteFile());
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write(content);
+            bw.close();
+            return "0";
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "-1";
+        }
+
+
+
+    }
+
+    public static void existsDelete(String dirPath) {
+        File pathFile = new File(dirPath);
+        if(!pathFile.exists() || pathFile.isFile()) {
+            return ;
+        }else
+            pathFile.delete();
+    }
+
     /**
      * 按行读取文件到字符串数组
      * @param path 文件路径

@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import static elearning.FileHandler.ReadFile;
+import static elearning.FileHandler.WriteFile;
 import static elearning.sql.BBSSQL.*;
 
 
@@ -75,5 +76,11 @@ public class BBSController {
     @RequestMapping("/FreshPage")
     public ArrayList<MBBS> FreshPage(String page){
        return PackedMBBS(BBSSQL.getMainBBS(Integer.parseInt(page)));
+    }
+
+    @ResponseBody
+    @RequestMapping("/UpdateNotice")
+    public String UpdateNotice(String Content){
+        return WriteFile("src/main/resources/static/notice/notice.txt",Content);
     }
 }

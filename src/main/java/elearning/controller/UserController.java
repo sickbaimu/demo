@@ -3,6 +3,7 @@ package elearning.controller;
 
 import elearning.entity.HomeInfo;
 import elearning.sql.BBSSQL;
+import elearning.sql.LearnSQL;
 import elearning.sql.PointSQL;
 import elearning.sql.UserSQL;
 import org.springframework.stereotype.Controller;
@@ -47,10 +48,12 @@ public class UserController {
         return UserSQL.AddUser(Name,Password,ID,Sex);
     }
 
+
     @ResponseBody
     @RequestMapping("/GetHomeInfo")
-    public HomeInfo GetHomeInfo(){
-        return new HomeInfo(getTextListDemo(),getPhotoListDemo(),getMediaListDemo(), PackedMBBS(BBSSQL.getMainBBS(0)));
+    public HomeInfo GetHomeInfo(String userID){
+        return new HomeInfo(getTextListDemo(),getPhotoListDemo(),getMediaListDemo(), PackedMBBS(BBSSQL.getMainBBS(0)),
+                LearnController.GetRate(userID));
     }
 
 

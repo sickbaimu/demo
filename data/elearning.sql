@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50727
 File Encoding         : 65001
 
-Date: 2019-08-31 21:19:36
+Date: 2019-09-06 22:12:26
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -47,7 +47,7 @@ CREATE TABLE `childbbs` (
   `user` int(11) DEFAULT NULL,
   `time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of childbbs
@@ -71,6 +71,8 @@ INSERT INTO `childbbs` VALUES ('16', '1', '哈哈哈', '1', '2019-08-16 08:27:03
 INSERT INTO `childbbs` VALUES ('17', '3', '？', '1', '2019-08-16 08:28:25');
 INSERT INTO `childbbs` VALUES ('18', '1', '不错', '1', '2019-08-28 16:59:33');
 INSERT INTO `childbbs` VALUES ('19', '38', '？？', '1', '2019-08-28 16:59:50');
+INSERT INTO `childbbs` VALUES ('20', '4', '是的', '999999', '2019-09-06 02:31:12');
+INSERT INTO `childbbs` VALUES ('21', '39', '测试内容', '999999', '2019-09-06 02:31:32');
 
 -- ----------------------------
 -- Table structure for `collection`
@@ -93,22 +95,6 @@ INSERT INTO `collection` VALUES ('4', '1', '4');
 INSERT INTO `collection` VALUES ('5', '1', '1');
 
 -- ----------------------------
--- Table structure for `learnrecord`
--- ----------------------------
-DROP TABLE IF EXISTS `learnrecord`;
-CREATE TABLE `learnrecord` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `type` varchar(255) NOT NULL,
-  `no` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of learnrecord
--- ----------------------------
-
--- ----------------------------
 -- Table structure for `mainbbs`
 -- ----------------------------
 DROP TABLE IF EXISTS `mainbbs`;
@@ -118,7 +104,7 @@ CREATE TABLE `mainbbs` (
   `user` int(11) NOT NULL,
   `time` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of mainbbs
@@ -160,6 +146,7 @@ INSERT INTO `mainbbs` VALUES ('35', 'pp', '1', '2019-08-13 18:07:14');
 INSERT INTO `mainbbs` VALUES ('36', 'mmm', '1', '2019-08-13 18:54:32');
 INSERT INTO `mainbbs` VALUES ('37', '啧啧啧', '1', '2019-08-14 16:27:26');
 INSERT INTO `mainbbs` VALUES ('38', '教材', '1', '2019-08-28 16:59:50');
+INSERT INTO `mainbbs` VALUES ('39', '管理员测试', '999999', '2019-09-06 02:31:32');
 
 -- ----------------------------
 -- Table structure for `media`
@@ -171,12 +158,12 @@ CREATE TABLE `media` (
   `name` varchar(255) NOT NULL,
   `path` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of media
 -- ----------------------------
-INSERT INTO `media` VALUES ('1', '1', '机器学习教程01聚类算法', 'https://v.youku.com/v_show/id_XNDEyMTU1MTAzMg==.html?spm=a2h0k.11417342.soresults.dtitle');
+INSERT INTO `media` VALUES ('1', '1', '机器学习01', 'https://v.youku.com/v_show/id_XNDEyMTU1MTAzMg==.html?spm=a2h0k.11417342.soresults.dtitle');
 INSERT INTO `media` VALUES ('2', '2', '机器学习教程02课题导入', 'https://v.youku.com/v_show/id_XNDEyMTU1MTQ5Mg==.html?spm=a2h0k.11417342.soresults.dtitle');
 INSERT INTO `media` VALUES ('3', '3', '机器学习教程03算法解析', 'https://v.youku.com/v_show/id_XNDEyMTU1MjM3Ng==.html?spm=a2h0k.11417342.soresults.dtitle');
 
@@ -231,7 +218,7 @@ CREATE TABLE `point` (
   `type` varchar(11) DEFAULT NULL,
   `time` varchar(8) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of point
@@ -249,6 +236,30 @@ INSERT INTO `point` VALUES ('15', '1', 'TextTime', '20190831');
 INSERT INTO `point` VALUES ('16', '1', 'TextTime', '20190831');
 INSERT INTO `point` VALUES ('17', '1', 'TextTime', '20190831');
 INSERT INTO `point` VALUES ('20', '1', 'MediaTime', '20190831');
+INSERT INTO `point` VALUES ('21', '1', 'Login', '20190903');
+INSERT INTO `point` VALUES ('22', '1', 'Login', '20190905');
+INSERT INTO `point` VALUES ('23', '1', 'TP', '20190905');
+INSERT INTO `point` VALUES ('24', '1', 'TP', '20190905');
+INSERT INTO `point` VALUES ('25', '1', 'Answer', '20190905');
+INSERT INTO `point` VALUES ('26', '1', 'Answer', '20190905');
+INSERT INTO `point` VALUES ('27', '1', 'Answer', '20190905');
+INSERT INTO `point` VALUES ('28', '1', 'Answer', '20190905');
+INSERT INTO `point` VALUES ('29', '1', 'Answer', '20190905');
+INSERT INTO `point` VALUES ('30', '1', 'Answer', '20190905');
+INSERT INTO `point` VALUES ('31', '1', 'Login', '20190906');
+INSERT INTO `point` VALUES ('32', '999999', 'BBS', '20190906');
+INSERT INTO `point` VALUES ('33', '1', 'TP', '20190906');
+INSERT INTO `point` VALUES ('34', '1', 'TP', '20190906');
+INSERT INTO `point` VALUES ('35', '1', 'TP', '20190906');
+INSERT INTO `point` VALUES ('36', '1', 'TP', '20190906');
+INSERT INTO `point` VALUES ('37', '1', 'TP', '20190906');
+INSERT INTO `point` VALUES ('38', '1', 'TP', '20190906');
+INSERT INTO `point` VALUES ('39', '999999', 'TP', '20190906');
+INSERT INTO `point` VALUES ('40', '999999', 'TP', '20190906');
+INSERT INTO `point` VALUES ('41', '999999', 'TP', '20190906');
+INSERT INTO `point` VALUES ('42', '999999', 'TP', '20190906');
+INSERT INTO `point` VALUES ('43', '999999', 'TP', '20190906');
+INSERT INTO `point` VALUES ('44', '999999', 'TP', '20190906');
 
 -- ----------------------------
 -- Table structure for `question`
@@ -256,8 +267,8 @@ INSERT INTO `point` VALUES ('20', '1', 'MediaTime', '20190831');
 DROP TABLE IF EXISTS `question`;
 CREATE TABLE `question` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `order` int(11) DEFAULT NULL,
-  `type` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `_order` int(11) DEFAULT NULL,
+  `_type` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `question` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `answer` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -266,10 +277,40 @@ CREATE TABLE `question` (
 -- ----------------------------
 -- Records of question
 -- ----------------------------
-INSERT INTO `question` VALUES ('1', '1', 'Radio', '1+1=?@1@2@3@4', 'B');
+INSERT INTO `question` VALUES ('1', '1', 'Radio', '最小数？@1@2@3@4', 'A');
 INSERT INTO `question` VALUES ('2', '2', 'Radio', '1+2=?@1@2@3@4', 'C');
 INSERT INTO `question` VALUES ('3', '3', 'Check', '偶数?@1@2@3@4', 'BD');
-INSERT INTO `question` VALUES ('4', '4', 'Fill', '1+_=2?', '1');
+INSERT INTO `question` VALUES ('4', '4', 'Fill', '1 _=23?', '22');
+
+-- ----------------------------
+-- Table structure for `record`
+-- ----------------------------
+DROP TABLE IF EXISTS `record`;
+CREATE TABLE `record` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `_type` varchar(255) NOT NULL,
+  `flag` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of record
+-- ----------------------------
+INSERT INTO `record` VALUES ('1', '1', 'text', '3_2');
+INSERT INTO `record` VALUES ('2', '1', 'text', '3_3');
+INSERT INTO `record` VALUES ('3', '1', 'photo', '最后的晚餐');
+INSERT INTO `record` VALUES ('4', '1', 'photo', '向日葵');
+INSERT INTO `record` VALUES ('5', '1', 'media', '机器学习教程03算法解析');
+INSERT INTO `record` VALUES ('8', '1', 'photo', '蒙娜丽莎的微笑');
+INSERT INTO `record` VALUES ('9', '1', 'photo', '岩间圣母');
+INSERT INTO `record` VALUES ('10', '1', 'photo', '星空');
+INSERT INTO `record` VALUES ('11', '1', 'photo', '三棵树');
+INSERT INTO `record` VALUES ('12', '1', 'text', '1_4');
+INSERT INTO `record` VALUES ('13', '1', 'text', '1_1');
+INSERT INTO `record` VALUES ('14', '1', 'text', '5_2');
+INSERT INTO `record` VALUES ('15', '1', 'media', '机器学习教程01聚类算法');
+INSERT INTO `record` VALUES ('16', '1', 'media', '机器学习教程02课题导入');
 
 -- ----------------------------
 -- Table structure for `score`
@@ -284,12 +325,13 @@ CREATE TABLE `score` (
   `errorNum` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `day` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of score
 -- ----------------------------
 INSERT INTO `score` VALUES ('4', '1', '25', '6', '1/4', '2、3、4', '2019-08-28 16:44:00');
+INSERT INTO `score` VALUES ('5', '8', '75', '21', '3/4', '3', '2019-08-29 15:00:00');
 
 -- ----------------------------
 -- Table structure for `section`
@@ -340,13 +382,14 @@ CREATE TABLE `user` (
   `st_id` varchar(255) NOT NULL,
   `sex` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1000000 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
 INSERT INTO `user` VALUES ('1', 'zhangsan', '333', '20190001', 'girl');
 INSERT INTO `user` VALUES ('8', 'lisi', '444', '20190002', 'girl');
+INSERT INTO `user` VALUES ('999999', 'admin', 'admin', '1', 'boy');
 
 -- ----------------------------
 -- Table structure for `vote`
