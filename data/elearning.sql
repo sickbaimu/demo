@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50727
 File Encoding         : 65001
 
-Date: 2019-09-06 22:12:26
+Date: 2019-09-08 02:57:13
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -196,7 +196,7 @@ CREATE TABLE `photo` (
   `_order` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of photo
@@ -207,6 +207,7 @@ INSERT INTO `photo` VALUES ('3', '3', '岩间圣母');
 INSERT INTO `photo` VALUES ('4', '4', '向日葵');
 INSERT INTO `photo` VALUES ('5', '5', '星空');
 INSERT INTO `photo` VALUES ('6', '6', '三棵树');
+INSERT INTO `photo` VALUES ('9', '7', '雪');
 
 -- ----------------------------
 -- Table structure for `point`
@@ -218,7 +219,7 @@ CREATE TABLE `point` (
   `type` varchar(11) DEFAULT NULL,
   `time` varchar(8) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of point
@@ -260,6 +261,25 @@ INSERT INTO `point` VALUES ('41', '999999', 'TP', '20190906');
 INSERT INTO `point` VALUES ('42', '999999', 'TP', '20190906');
 INSERT INTO `point` VALUES ('43', '999999', 'TP', '20190906');
 INSERT INTO `point` VALUES ('44', '999999', 'TP', '20190906');
+INSERT INTO `point` VALUES ('45', '999999', 'TP', '20190907');
+INSERT INTO `point` VALUES ('46', '999999', 'TP', '20190907');
+INSERT INTO `point` VALUES ('47', '999999', 'TP', '20190907');
+INSERT INTO `point` VALUES ('48', '999999', 'TP', '20190907');
+INSERT INTO `point` VALUES ('49', '999999', 'TP', '20190907');
+INSERT INTO `point` VALUES ('50', '999999', 'TP', '20190907');
+INSERT INTO `point` VALUES ('51', '1', 'Login', '20190907');
+INSERT INTO `point` VALUES ('52', '999999', 'TP', '20190908');
+INSERT INTO `point` VALUES ('53', '999999', 'TP', '20190908');
+INSERT INTO `point` VALUES ('54', '999999', 'TP', '20190908');
+INSERT INTO `point` VALUES ('55', '999999', 'TP', '20190908');
+INSERT INTO `point` VALUES ('56', '999999', 'TP', '20190908');
+INSERT INTO `point` VALUES ('57', '999999', 'TP', '20190908');
+INSERT INTO `point` VALUES ('58', '1', 'Login', '20190908');
+INSERT INTO `point` VALUES ('59', '1', 'TP', '20190908');
+INSERT INTO `point` VALUES ('60', '1', 'TP', '20190908');
+INSERT INTO `point` VALUES ('61', '1', 'TP', '20190908');
+INSERT INTO `point` VALUES ('62', '1', 'TP', '20190908');
+INSERT INTO `point` VALUES ('63', '1', 'TP', '20190908');
 
 -- ----------------------------
 -- Table structure for `question`
@@ -292,7 +312,7 @@ CREATE TABLE `record` (
   `_type` varchar(255) NOT NULL,
   `flag` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of record
@@ -311,6 +331,11 @@ INSERT INTO `record` VALUES ('13', '1', 'text', '1_1');
 INSERT INTO `record` VALUES ('14', '1', 'text', '5_2');
 INSERT INTO `record` VALUES ('15', '1', 'media', '机器学习教程01聚类算法');
 INSERT INTO `record` VALUES ('16', '1', 'media', '机器学习教程02课题导入');
+INSERT INTO `record` VALUES ('23', '1', 'photo', '雪');
+INSERT INTO `record` VALUES ('24', '1', 'text', '1_2');
+INSERT INTO `record` VALUES ('25', '1', 'text', '1_3');
+INSERT INTO `record` VALUES ('26', '1', 'text', '1_5');
+INSERT INTO `record` VALUES ('27', '1', 'text', '1_6');
 
 -- ----------------------------
 -- Table structure for `score`
@@ -343,7 +368,7 @@ CREATE TABLE `section` (
   `chapter_id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of section
@@ -370,6 +395,7 @@ INSERT INTO `section` VALUES ('21', '3', '5', '测试3');
 INSERT INTO `section` VALUES ('22', '4', '5', '测试4');
 INSERT INTO `section` VALUES ('23', '1', '6', '测试1');
 INSERT INTO `section` VALUES ('24', '2', '6', '测试2');
+INSERT INTO `section` VALUES ('27', '6', '1', '洛县普昌镇，当乡村规划师');
 
 -- ----------------------------
 -- Table structure for `user`
@@ -400,7 +426,7 @@ CREATE TABLE `vote` (
   `from_id` varchar(11) DEFAULT NULL,
   `to_id` varchar(11) CHARACTER SET utf8 DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of vote
@@ -409,6 +435,7 @@ INSERT INTO `vote` VALUES ('1', '1', '1');
 INSERT INTO `vote` VALUES ('4', '1', '4');
 INSERT INTO `vote` VALUES ('6', '1', '3');
 INSERT INTO `vote` VALUES ('7', '1', '7');
+INSERT INTO `vote` VALUES ('8', '1', '11');
 
 -- ----------------------------
 -- Table structure for `work`
@@ -419,7 +446,7 @@ CREATE TABLE `work` (
   `name` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of work
@@ -431,7 +458,7 @@ INSERT INTO `work` VALUES ('4', '陈宫', '1');
 INSERT INTO `work` VALUES ('5', '加雷斯', '1');
 INSERT INTO `work` VALUES ('6', '夏绿蒂', '1');
 INSERT INTO `work` VALUES ('7', '未命名', '1');
-INSERT INTO `work` VALUES ('8', '未命名', '1');
+INSERT INTO `work` VALUES ('11', '鲨鱼', '1');
 
 -- ----------------------------
 -- Table structure for `workcommit`
@@ -443,7 +470,7 @@ CREATE TABLE `workcommit` (
   `userID` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `commit` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of workcommit
@@ -460,3 +487,4 @@ INSERT INTO `workcommit` VALUES ('9', '3', '1', 'cccccc');
 INSERT INTO `workcommit` VALUES ('10', '6', '1', 'good');
 INSERT INTO `workcommit` VALUES ('11', '5', '1', 'ex');
 INSERT INTO `workcommit` VALUES ('12', '1', '1', '55');
+INSERT INTO `workcommit` VALUES ('13', '11', '1', '测试');

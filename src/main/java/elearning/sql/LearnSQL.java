@@ -2,6 +2,7 @@ package elearning.sql;
 
 
 import elearning.entity.MyMedia;
+import elearning.entity.Photo;
 import elearning.entity.TextChapter;
 import elearning.entity.TextSection;
 
@@ -15,8 +16,6 @@ import java.util.ArrayList;
  * @Date 2019/7/12 19:49
  */
 public class LearnSQL extends BaseSQL{
-
-
 
     /**
      * 获得id为chapter_id章、顺序为section_order的节
@@ -236,6 +235,100 @@ public class LearnSQL extends BaseSQL{
         try{
             init();
             String sql = "insert into media (_order,name,path)VALUES('"+order+"','"+name+"','"+path+"');";
+            System.out.println(sql);
+            stmt.executeUpdate(sql);
+            closeUpdate();
+        }catch(SQLException |ClassNotFoundException e){
+            e.printStackTrace();
+            return "-1";
+        }
+        return "0";
+    }
+
+    public static Photo GetPhotoByName(String name) {
+        Photo photo = new Photo("","",name,"");
+        try{
+            init();
+            rs = stmt.executeQuery("select *from photo where name = '"+name+"'");
+            while(rs.next()) {
+                photo.setId(rs.getString("id"));
+                photo.setOrder(rs.getString("_order"));
+            }
+            closeQuery();
+        }catch(SQLException |ClassNotFoundException e){
+            e.printStackTrace();
+        }
+        return photo;
+    }
+
+    public static String UpdatePhoto(String id, String order, String name) {
+        try{
+            init();
+            String sql = "update photo set _order = "+order+" ,name ='"+name+"' where id  = "+id;
+            stmt.executeUpdate(sql);
+            closeUpdate();
+        }catch(SQLException |ClassNotFoundException e){
+            e.printStackTrace();
+            return "-1";
+        }
+        return "0";
+    }
+
+    public static String DeletePhoto(String id) {
+        try {
+            init();
+            stmt.executeUpdate("delete from photo where id =  "+id);
+            closeQuery();
+        }catch(SQLException |ClassNotFoundException e){
+            e.printStackTrace();
+            return "-1";
+        }
+        return "0";
+    }
+
+    public static String AddPhoto(String order, String name) {
+        try{
+            init();
+            String sql = "insert into photo (_order,name)VALUES('"+order+"','"+name+"');";
+            System.out.println(sql);
+            stmt.executeUpdate(sql);
+            closeUpdate();
+        }catch(SQLException |ClassNotFoundException e){
+            e.printStackTrace();
+            return "-1";
+        }
+        return "0";
+    }
+
+    public static String UpdateText(String id, String order, String chapter, String name) {
+        try{
+            init();
+            String sql = "update section set _order = "+order+" ,name ='"+name+"' ,chapter_id ='"+chapter+"' where id  = "+id;
+            stmt.executeUpdate(sql);
+            closeUpdate();
+        }catch(SQLException |ClassNotFoundException e){
+            e.printStackTrace();
+            return "-1";
+        }
+        return "0";
+    }
+
+    public static String DeleteText(String id) {
+        try {
+            init();
+            stmt.executeUpdate("delete from section where id =  "+id);
+            closeQuery();
+        }catch(SQLException |ClassNotFoundException e){
+            e.printStackTrace();
+            return "-1";
+        }
+        return "0";
+    }
+
+    public static String AddText(String order, String name, String chapter) {
+        try{
+            init();
+            String sql = "insert into section (_order,name,chapter_id)VALUES('"+order+"','"+name+"','"+chapter+"');";
             System.out.println(sql);
             stmt.executeUpdate(sql);
             closeUpdate();

@@ -72,7 +72,7 @@ public class VoteSQL extends BaseSQL {
         int cnt = 0;
         try{
             init();
-            rs = stmt.executeQuery("select *from vote where id = "+id);
+            rs = stmt.executeQuery("select *from vote where to_id = "+id);
             while(rs.next())
             {
                 cnt++;
@@ -81,6 +81,7 @@ public class VoteSQL extends BaseSQL {
         }catch(SQLException |ClassNotFoundException e){
             e.printStackTrace();
         }
+        System.out.println(id+cnt);
         return String.valueOf(cnt);
     }
 

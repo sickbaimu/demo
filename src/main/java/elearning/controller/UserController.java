@@ -3,14 +3,15 @@ package elearning.controller;
 
 import elearning.entity.HomeInfo;
 import elearning.sql.BBSSQL;
-import elearning.sql.LearnSQL;
-import elearning.sql.PointSQL;
 import elearning.sql.UserSQL;
+import org.springframework.core.io.ResourceLoader;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.ArrayList;
+import javax.annotation.Resource;
 
 import static elearning.sql.BBSSQL.PackedMBBS;
 import static elearning.sql.BaseSQL.ListToString;
@@ -70,6 +71,8 @@ public class UserController {
     }
 
 
+    private ResourceLoader resourceLoader;
+    private String uploadPicturePath;
 
     /**
      * 获取视频目录
@@ -78,4 +81,5 @@ public class UserController {
     private String getMediaListDemo(){
         return ListToString(getNameList("media","name"));
     }
+
 }

@@ -1,20 +1,20 @@
 package elearning.controller;
 
 
-import elearning.entity.MyMedia;
-import elearning.entity.RankRecord;
-import elearning.entity.TextChapter;
-import elearning.entity.TextSection;
+import elearning.entity.*;
 import elearning.patch.TextContent;
 import elearning.sql.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.io.File;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import static elearning.FileHandler.ReadFile;
+import static elearning.FileHandler.WriteFile;
+import static elearning.patch.UpLoadPicture.GenerateImage;
 import static elearning.sql.LearnSQL.*;
 
 @Controller
@@ -80,11 +80,13 @@ public class LearnController {
      */
     @ResponseBody
     @RequestMapping("/GetPhotoDescription")
-    public String GetPhotoDescription(String photoName,String userID){
+    public Photo GetPhotoDescription(String photoName,String userID){
         PointController.AddPoint(userID,1,"TP");
         if(!CheckRecord(userID,"photo",photoName))
             AddRecord(userID,"photo",photoName);
-        return ReadFile("src/main/resources/static/photo/"+photoName+".txt");
+        Photo photo = LearnSQL.GetPhotoByName(photoName);
+        photo.setDes(ReadFile("data/photo/"+photoName+".txt"));
+        return photo;
     }
 
     @ResponseBody
@@ -159,5 +161,72 @@ public class LearnController {
     @RequestMapping("/AddMedia")
     public static String AddMedia(String order,String name,String path){
         return LearnSQL.AddMedia(order,name,path);
+    }
+
+    @ResponseBody
+    @RequestMapping("/UpdatePhoto")
+    public static String UpdatePhoto(String id,String order,String name,String des,String base64){
+        String folder_path = "data/photo/";
+
+        boolean result  = GenerateImage(base64,folder_path+name+".jpg");
+        if(!result){
+            return "-1";
+        }
+        if(WriteFile("data/photo/"+name+".txt",des).equals("0"))
+            return LearnSQL.UpdatePhoto(id,order,name);
+        else
+            return "-1";
+    }
+
+    @ResponseBody
+    @RequestMapping("/DeletePhoto")
+    public static String DeletePhoto(String id){
+        return LearnSQL.DeletePhoto(id);
+    }
+
+    @ResponseBody
+    @RequestMapping("/AddPhoto")
+    public static String AddPhoto(String order,String name,String des,String base64){
+        String folder_path = "data/photo/";
+        File folder = new File(folder_path);
+        if (!folder.exists()) {
+            folder.mkdir();
+        }
+        System.out.println("接收成功");
+        System.out.println(base64);
+        boolean result  = GenerateImage(base64,folder_path+name+".jpg");
+        if(!result){
+            return "-1";
+        }
+        System.out.println("解压成功");
+
+        if(!WriteFile("data/photo/"+name+".txt",des).equals("0"))
+            return "-1";
+        System.out.println("写入成功");
+
+        return LearnSQL.AddPhoto(order,name);
+    }
+
+    @ResponseBody
+    @RequestMapping("/UpdateText")
+    public static String UpdateText(String id,String order,String chapter,String content,String name){
+        if(!WriteFile("data/"+name+".txt",content).equals("0"))
+            return "-1";
+        return LearnSQL.UpdateText(id,order,chapter,name);
+    }
+
+    @ResponseBody
+    @RequestMapping("/DeleteText")
+    public static String DeleteText(String id){
+        return LearnSQL.DeleteText(id);
+    }
+
+    @ResponseBody
+    @RequestMapping("/AddText")
+    public static String AddText(String order,String name,String content,String chapter){
+        String folder = LearnSQL.GetTextChapter(chapter).getName();
+        if(!WriteFile("data/text/"+folder+"/"+name+".txt",content).equals("0"))
+            return "-1";
+        return LearnSQL.AddText(order,name,chapter);
     }
 }

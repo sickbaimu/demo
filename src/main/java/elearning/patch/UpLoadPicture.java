@@ -18,6 +18,7 @@ public class UpLoadPicture {
             if((i+1)%76==0)
                 s += "\r\n";
         }
+        System.out.println("解码中");
 
         //对字节数组字符串进行Base64解码并生成图片
         BASE64Decoder decoder = new BASE64Decoder();

@@ -1,15 +1,24 @@
 package elearning.controller;
 
+import ch.qos.logback.core.util.FileUtil;
 import elearning.entity.RankRecord;
 import elearning.entity.WorkCommit;
 import elearning.sql.BBSSQL;
 import elearning.sql.UserSQL;
 import elearning.sql.VoteSQL;
+import org.apache.tomcat.util.http.fileupload.FileUtils;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.io.File;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
+import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -92,9 +101,7 @@ public class VoteController {
     @ResponseBody
     @RequestMapping("/UpLoadWork")
     public String UpLoadWork(String base64,String userID,String name) {
-        System.out.println(userID);
-        System.out.println(name);
-        String folder_path = "src\\main\\resources\\static\\work\\";
+        String folder_path = "data\\work\\";
         File folder = new File(folder_path);
         if (!folder.exists()) {
             folder.mkdir();
@@ -105,4 +112,6 @@ public class VoteController {
         }
         return "-1";
     }
+
+
 }
