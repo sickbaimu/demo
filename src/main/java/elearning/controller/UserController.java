@@ -53,6 +53,9 @@ public class UserController {
     @ResponseBody
     @RequestMapping("/GetHomeInfo")
     public HomeInfo GetHomeInfo(String userID){
+        System.out.println(getTextListDemo());
+        System.out.println(getPhotoListDemo());
+        System.out.println(getMediaListDemo());
         return new HomeInfo(getTextListDemo(),getPhotoListDemo(),getMediaListDemo(), PackedMBBS(BBSSQL.getMainBBS(0)),
                 LearnController.GetRate(userID));
     }

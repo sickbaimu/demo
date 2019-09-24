@@ -9,8 +9,8 @@ public class MyWebAppConfigurer implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         //外部访问路径映射到本地磁盘路径
-        registry.addResourceHandler("/p/**").addResourceLocations("file:C:/IdeaProjects/GitProject/demo/data/photo/");
-        registry.addResourceHandler("/w/**").addResourceLocations("file:C:/IdeaProjects/GitProject/demo/data/work/");
+        registry.addResourceHandler("/p/**").addResourceLocations("file:F:/NewFolder/IdeaProjects/data/photo");
+        registry.addResourceHandler("/w/**").addResourceLocations("file:F:/NewFolder/IdeaProjects/data/photo");
 
     }
 }

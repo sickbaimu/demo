@@ -7,7 +7,7 @@ public class BaseSQL {
     static String url = "jdbc:mysql://localhost:3306/elearning?useSSL=true&characterEncoding=utf8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
     static String jdbc = "com.mysql.cj.jdbc.Driver";
     static String user = "root";
-    static String password = "233907";
+    static String password = "123456";
     static Connection conn;
     static Statement stmt;
     static ResultSet rs;

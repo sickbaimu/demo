@@ -94,6 +94,7 @@ public class LearnController {
     public String GetMediaPath(String name,String userID){
         if(!CheckRecord(userID,"media",name))
             AddRecord(userID,"media",name);
+        System.out.println("|"+LearnSQL.GetMediaPath(name));
         return LearnSQL.GetMediaPath(name);
     }
 
